@@ -1,5 +1,4 @@
 package pl.worldcup.scoreboard;
 
-public class Match {
-
+public record Match(String homeTeam, String awayTeam, Score score) {
 }

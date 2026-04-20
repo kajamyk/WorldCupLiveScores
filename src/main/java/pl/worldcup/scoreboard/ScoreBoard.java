@@ -10,4 +10,7 @@ public class ScoreBoard {
     public List<Match> getSummary() {
         return matches;
     }
+
+    public void startGame(String home, String away) {
+    }
 }

@@ -16,4 +16,17 @@ class ScoreBoardTest {
 
         assertTrue(summary.isEmpty());
     }
+
+    @Test
+    void shouldStartGameWithZeroScore() {
+        ScoreBoard board = new ScoreBoard();
+
+        board.startGame("Mexico", "Canada");
+
+        List<Match> summary = board.getSummary();
+
+        assertEquals(1, summary.size());
+        assertEquals(0, summary.getFirst().score().home());
+        assertEquals(0, summary.getFirst().score().away());
+    }
 }
