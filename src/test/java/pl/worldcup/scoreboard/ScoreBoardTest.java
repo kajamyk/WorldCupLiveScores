@@ -58,4 +58,13 @@ class ScoreBoardTest {
         assertEquals(3, match.score().home());
         assertEquals(2, match.score().away());
     }
+
+    @Test
+    void shouldThrowExceptionWhenMatchNotFoundOnUpdate() {
+        ScoreBoard board = new ScoreBoard();
+
+        assertThrows(MatchNotFoundException.class, () ->
+                board.updateScore("A", "B", 1, 1)
+        );
+    }
 }
