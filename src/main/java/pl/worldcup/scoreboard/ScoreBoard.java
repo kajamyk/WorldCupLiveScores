@@ -68,6 +68,7 @@ public class ScoreBoard {
      * @throws MatchNotFoundException if match does not exist
      */
     public void updateScore(String home, String away, int homeScore, int awayScore) {
+        validateScore(homeScore, awayScore);
         for (int i = 0; i < matches.size(); i++) {
             Match m = matches.get(i);
 
@@ -77,6 +78,12 @@ public class ScoreBoard {
             }
         }
         throw new MatchNotFoundException("Match not found: " + home + " vs " + away);
+    }
+
+    private void validateScore(int homeScore, int awayScore) {
+        if (homeScore < 0 || awayScore < 0) {
+            throw new IllegalArgumentException("Score must be non-negative");
+        }
     }
 
     private void validateTeams(String home, String away) {
