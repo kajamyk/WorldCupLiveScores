@@ -1,5 +1,6 @@
 package pl.worldcup.scoreboard;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,11 +9,24 @@ public class ScoreBoard {
     private final List<Match> matches = new ArrayList<>();
 
     public List<Match> getSummary() {
-        return matches;
+        List<Match> sorted = new ArrayList<>(matches);
+
+        sorted.sort((a, b) -> {
+            int scoreCompare = Integer.compare(
+                    b.score().total(),
+                    a.score().total()
+            );
+
+            if (scoreCompare != 0) return scoreCompare;
+
+            return b.createdAt().compareTo(a.createdAt());
+        });
+
+        return sorted;
     }
 
     public void startGame(String home, String away) {
-        matches.add(new Match(home, away, new Score(0, 0)));
+        matches.add(new Match(home, away, new Score(0, 0), Instant.now()));
     }
 
     public void finishGame(String home, String away) {
@@ -24,7 +38,7 @@ public class ScoreBoard {
             Match m = matches.get(i);
 
             if (m.homeTeam().equals(home) && m.awayTeam().equals(away)) {
-                matches.set(i, new Match(home, away, new Score(homeScore, awayScore)));
+                matches.set(i, new Match(home, away, new Score(homeScore, awayScore), m.createdAt()));
                 return;
             }
         }
