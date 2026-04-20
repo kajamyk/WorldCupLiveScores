@@ -111,4 +111,18 @@ class ScoreBoardTest {
                 board.startGame("Spain", "Spain")
         );
     }
+
+    @Test
+    void shouldThrowExceptionWhenScoresAreInvalid() {
+        ScoreBoard board = new ScoreBoard();
+        board.startGame("Spain", "Brazil");
+
+        assertThrows(IllegalArgumentException.class, () ->
+                board.updateScore("Spain", "Brazil", -1, 0)
+        );
+
+        assertThrows(IllegalArgumentException.class, () ->
+                board.updateScore("Spain", "Brazil", 1, -2)
+        );
+    }
 }
