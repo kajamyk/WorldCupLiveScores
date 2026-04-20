@@ -28,5 +28,6 @@ public class ScoreBoard {
                 return;
             }
         }
+        throw new MatchNotFoundException("Match not found: " + home + " vs " + away);
     }
 }
