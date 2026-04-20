@@ -26,6 +26,7 @@ public class ScoreBoard {
     }
 
     public void startGame(String home, String away) {
+        validateTeams(home, away);
         matches.add(new Match(home, away, new Score(0, 0), sequence++));
     }
 
@@ -43,5 +44,14 @@ public class ScoreBoard {
             }
         }
         throw new MatchNotFoundException("Match not found: " + home + " vs " + away);
+    }
+
+    private void validateTeams(String home, String away) {
+        if (home == null || away == null || home.isBlank() || away.isBlank()) {
+            throw new IllegalArgumentException("Team names cannot be empty");
+        }
+        if (home.equals(away)) {
+            throw new IllegalArgumentException("Teams must be different");
+        }
     }
 }
