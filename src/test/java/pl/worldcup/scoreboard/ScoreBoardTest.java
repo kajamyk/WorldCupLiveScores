@@ -67,4 +67,20 @@ class ScoreBoardTest {
                 board.updateScore("A", "B", 1, 1)
         );
     }
+
+    @Test
+    void shouldSortByTotalScoreDescending() {
+        ScoreBoard board = new ScoreBoard();
+
+        board.startGame("Mexico", "Canada");
+        board.updateScore("Mexico", "Canada", 0, 5);
+
+        board.startGame("Spain", "Brazil");
+        board.updateScore("Spain", "Brazil", 10, 2);
+
+        List<Match> result = board.getSummary();
+
+        assertEquals("Spain", result.get(0).homeTeam());
+        assertEquals("Mexico", result.get(1).homeTeam());
+    }
 }
