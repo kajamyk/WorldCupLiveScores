@@ -20,5 +20,13 @@ public class ScoreBoard {
     }
 
     public void updateScore(String home, String away, int homeScore, int awayScore) {
+        for (int i = 0; i < matches.size(); i++) {
+            Match m = matches.get(i);
+
+            if (m.homeTeam().equals(home) && m.awayTeam().equals(away)) {
+                matches.set(i, new Match(home, away, new Score(homeScore, awayScore)));
+                return;
+            }
+        }
     }
 }
