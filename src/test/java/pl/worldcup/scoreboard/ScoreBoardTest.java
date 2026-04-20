@@ -125,4 +125,14 @@ class ScoreBoardTest {
                 board.updateScore("Spain", "Brazil", 1, -2)
         );
     }
+
+    @Test
+    void shouldThrowExceptionWhenStartingDuplicateMatch() {
+        ScoreBoard board = new ScoreBoard();
+        board.startGame("Spain", "Brazil");
+
+        assertThrows(IllegalArgumentException.class, () ->
+                board.startGame("Spain", "Brazil")
+        );
+    }
 }
