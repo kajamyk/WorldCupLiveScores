@@ -18,4 +18,7 @@ public class ScoreBoard {
     public void finishGame(String home, String away) {
         matches.removeIf(match -> match.matches(home, away));
     }
+
+    public void updateScore(String home, String away, int homeScore, int awayScore) {
+    }
 }

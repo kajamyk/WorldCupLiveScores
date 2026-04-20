@@ -45,4 +45,17 @@ class ScoreBoardTest {
         assertEquals("C", result.getFirst().homeTeam());
         assertEquals("D", result.getFirst().awayTeam());
     }
+
+    @Test
+    void shouldUpdateScoreCorrectly() {
+        ScoreBoard board = new ScoreBoard();
+
+        board.startGame("Spain", "Brazil");
+        board.updateScore("Spain", "Brazil", 3, 2);
+
+        Match match = board.getSummary().getFirst();
+
+        assertEquals(3, match.score().home());
+        assertEquals(2, match.score().away());
+    }
 }
