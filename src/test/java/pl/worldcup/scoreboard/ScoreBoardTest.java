@@ -29,4 +29,20 @@ class ScoreBoardTest {
         assertEquals(0, summary.getFirst().score().home());
         assertEquals(0, summary.getFirst().score().away());
     }
+
+    @Test
+    void shouldRemoveOnlySpecificMatch() {
+        ScoreBoard board = new ScoreBoard();
+
+        board.startGame("A", "B");
+        board.startGame("C", "D");
+
+        board.finishGame("A", "B");
+
+        List<Match> result = board.getSummary();
+
+        assertEquals(1, result.size());
+        assertEquals("C", result.getFirst().homeTeam());
+        assertEquals("D", result.getFirst().awayTeam());
+    }
 }

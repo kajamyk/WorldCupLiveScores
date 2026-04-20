@@ -14,4 +14,7 @@ public class ScoreBoard {
     public void startGame(String home, String away) {
         matches.add(new Match(home, away, new Score(0, 0)));
     }
+
+    public void finishGame(String home, String away) {
+    }
 }
