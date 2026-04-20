@@ -98,4 +98,17 @@ class ScoreBoardTest {
 
         assertEquals("C", result.getFirst().homeTeam());
     }
+
+    @Test
+    void shouldThrowExceptionWhenTeamsAreInvalid() {
+        ScoreBoard board = new ScoreBoard();
+
+        assertThrows(IllegalArgumentException.class, () ->
+                board.startGame("", "Brazil")
+        );
+
+        assertThrows(IllegalArgumentException.class, () ->
+                board.startGame("Spain", "Spain")
+        );
+    }
 }
