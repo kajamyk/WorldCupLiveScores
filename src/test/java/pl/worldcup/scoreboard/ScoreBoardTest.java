@@ -83,4 +83,19 @@ class ScoreBoardTest {
         assertEquals("Spain", result.get(0).homeTeam());
         assertEquals("Mexico", result.get(1).homeTeam());
     }
+
+    @Test
+    void shouldSortByMostRecentWhenScoreIsEqual() {
+        ScoreBoard board = new ScoreBoard();
+
+        board.startGame("A", "B");
+        board.updateScore("A", "B", 2, 2);
+
+        board.startGame("C", "D");
+        board.updateScore("C", "D", 2, 2);
+
+        List<Match> result = board.getSummary();
+
+        assertEquals("C", result.getFirst().homeTeam());
+    }
 }
