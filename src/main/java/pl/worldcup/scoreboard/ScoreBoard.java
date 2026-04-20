@@ -52,7 +52,15 @@ public class ScoreBoard {
      */
     public void startGame(String home, String away) {
         validateTeams(home, away);
+        validateNoDuplicateMatch(home, away);
         matches.add(new Match(home, away, new Score(0, 0), sequence++));
+    }
+
+    private void validateNoDuplicateMatch(String home, String away) {
+        boolean matchAlreadyExist = matches.stream().anyMatch(match -> match.matches(home, away));
+        if (matchAlreadyExist) {
+            throw new IllegalArgumentException("Match must be unique");
+        }
     }
 
     /**

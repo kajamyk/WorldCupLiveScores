@@ -12,7 +12,6 @@ Simple in-memory library that manages live football matches.
 ## Assumptions
 
 - Each match is uniquely identified by (homeTeam, awayTeam)
-- No duplicate matches allowed
 - Most recent match = last inserted into system
 
 ## Design decisions
